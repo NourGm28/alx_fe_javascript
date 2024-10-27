@@ -171,13 +171,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set up periodic server check every 30 seconds
     setInterval(periodicSync, 30000);
 
+
     // Event listeners
     document.getElementById("newQuote").addEventListener('click', showRandomQuote);
     document.querySelector("button[onclick='addQuote()']").addEventListener('click', addQuote);
     document.getElementById("categoryDropdown").addEventListener('change', categoryFilter);
     document.getElementById("exportBtn").addEventListener('click', syncQuotes);
     document.getElementById("importFile").addEventListener('change', importFromJsonFile);
-
+    alert("Quotes synced with server!");
     // Initialize categories and show a random quote
     populateCategories();
     showRandomQuote();
