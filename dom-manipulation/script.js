@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Periodic sync with server to update quotes from server
-    async function periodicSync() {
+    async function fetchQuotesFromServer() {
         try {
             const response = await fetch(serverURL);
             if (response.ok) {
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Set up periodic server check every 30 seconds
-    setInterval(periodicSync, 30000);
+    setInterval(fetchQuotesFromServer, 30000);
 
     // Event listeners
     document.getElementById("newQuote").addEventListener('click', showRandomQuote);
