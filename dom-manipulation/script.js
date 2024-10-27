@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to filter quotes based on selected category
-    function categoryFilter() {
+    function filterQuote() {
         const selectedCategory = document.getElementById("categoryDropdown").value;
         const filteredQuotes = quotes.filter(quote => quote.category === selectedCategory);
         let quoteDisplay = document.getElementById("quoteDisplay");
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listeners
     document.getElementById("newQuote").addEventListener('click', showRandomQuote);
     document.querySelector("button[onclick='addQuote()']").addEventListener('click', addQuote);
-    document.getElementById("categoryDropdown").addEventListener('change', categoryFilter);
+    document.getElementById("categoryDropdown").addEventListener('change', filterQuote);
     document.getElementById("exportBtn").addEventListener('click', exportQuotes);
     document.getElementById("importFile").addEventListener('change', importFromJsonFile);
 
