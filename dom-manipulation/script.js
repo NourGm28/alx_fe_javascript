@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to export quotes to JSON
-    function exportQuotes() {
+    function syncQuotes() {
         const dataStr = JSON.stringify(quotes);
         const blob = new Blob([dataStr], { type: "application/json" });
         const url = URL.createObjectURL(blob);
@@ -139,12 +139,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Periodic sync with server to update quotes from server
-    async function fetchQuotesFromServer() {
+    async function periodicSync() {
         try {
             const response = await fetch(serverURL);
             if (response.ok) {
                 const serverQuotes = await response.json();
-                handleServerData(serverQuotes); // Resolve conflicts and update quotes
+                fetchQuotesFromServer(serverQuotes); // Resolve conflicts and update quotes
             } else {
                 console.warn("Failed to fetch data from server.");
             }
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Handle server data and resolve conflicts
-    function handleServerData(serverQuotes) {
+    function fetchQuotesFromServer(serverQuotes) {
         serverQuotes.forEach(serverQuote => {
             const localQuote = quotes.find(quote => quote.text === serverQuote.text);
             if (!localQuote) {
@@ -169,13 +169,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Set up periodic server check every 30 seconds
-    setInterval(fetchQuotesFromServer, 30000);
+    setInterval(periodicSync, 30000);
 
     // Event listeners
     document.getElementById("newQuote").addEventListener('click', showRandomQuote);
     document.querySelector("button[onclick='addQuote()']").addEventListener('click', addQuote);
     document.getElementById("categoryDropdown").addEventListener('change', categoryFilter);
-    document.getElementById("exportBtn").addEventListener('click', exportQuotes);
+    document.getElementById("exportBtn").addEventListener('click', syncQuotes);
     document.getElementById("importFile").addEventListener('change', importFromJsonFile);
 
     // Initialize categories and show a random quote
