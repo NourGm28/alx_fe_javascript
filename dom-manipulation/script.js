@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     // Function to display a random quote
-    function showRandomQuote() {
+    function createAddQuoteForm() {
         let quoteDisplay = document.getElementById("quoteDisplay");
         let randomIndex = Math.floor(Math.random() * quotes.length); // Select random quote
         let randomQuote = quotes[randomIndex];
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Attach event listener to 'Show New Quote' button
     let showQuoteBtn = document.getElementById("newQuote");
-    showQuoteBtn.addEventListener('click', showRandomQuote);
+    showQuoteBtn.addEventListener('click', createAddQuoteForm);
 
     // Function to add a new quote
     function addQuote() {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
     addQuoteBtn.addEventListener('click', addQuote);
 
     // Optionally, show a random quote when the page loads
-    showRandomQuote();
+    createAddQuoteForm();
 });
 
 
