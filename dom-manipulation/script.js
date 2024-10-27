@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Clear the input fields
             document.getElementById("newQuoteText").value = "";
             document.getElementById("newQuoteCategory").value = "";
-
+            document.createElement("div");
+            quoteDisplay.appendChild(quoteDisplay);
             alert("New quote added successfully!");
         } else {
             alert("Please enter both a quote and a category.");
